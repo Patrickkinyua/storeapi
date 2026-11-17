@@ -1,0 +1,13 @@
+[Unit]
+Description=Ricky Stores API (gunicorn)
+After=network.target
+
+[Service]
+# Change azureuser if you picked a different admin username when creating the VM
+User=azureuser
+WorkingDirectory=/home/azureuser/storeapi
+ExecStart=/home/azureuser/storeapi/venv/bin/gunicorn --workers 2 --bind 127.0.0.1:8000 config.wsgi
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
